@@ -3,18 +3,21 @@
 @tailwind utilities;
 
 @layer components {
+    /*SearchBar.tsx*/
+
+
     /*Jobs.tsx*/
-    .wrap {
+/*    .wrap {
         @apply flex justify-center items-center flex-col bg-[#F5F5F5];
     }
 
     .jobsContainer {
         @apply container mt-7 w-[1400px] flex flex-col gap-y-2 font-sans
         lg:w-[396px];
-    }
+    }*/
 
     /*Job.tsx*/
-    .jobItem {
+/*    .jobItem {
         @apply container flex flex-row items-center px-6 py-4 gap-x-7 w-full h-[164px] bg-white rounded-lg shadow-item-shadow
         lg:h-[206px] lg:bg-[#EFF0F5];
     }
@@ -75,7 +78,7 @@
     .jobServiceInfo_createAt > p {
         @apply p-0 m-0 text-end
         lg:last:hidden;
-    }
+    }*/
 }
 
 
