@@ -4,6 +4,15 @@
 
 @layer components {
     /*SearchBar.tsx*/
+    .searchBarTitle {
+        @apply font-semibold text-base text-base-text mb-2.5;
+    }
+
+    .searchBarContainer {
+        @apply w-[600px] h-12 px-5 py-3.5 flex gap-x-5 items-center
+        font-normal text-base text-filter-text
+        border-solid border-[1px] border-border-color rounded-[5px];
+    }
 
 
     /*Jobs.tsx*/
