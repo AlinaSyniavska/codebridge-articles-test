@@ -1,13 +1,81 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /*Jobs.tsx*/
+    .wrap {
+        @apply flex justify-center items-center flex-col bg-[#F5F5F5];
+    }
+
+    .jobsContainer {
+        @apply container mt-7 w-[1400px] flex flex-col gap-y-2 font-sans
+        lg:w-[396px];
+    }
+
+    /*Job.tsx*/
+    .jobItem {
+        @apply container flex flex-row items-center px-6 py-4 gap-x-7 w-full h-[164px] bg-white rounded-lg shadow-item-shadow
+        lg:h-[206px] lg:bg-[#EFF0F5];
+    }
+
+    .jobImage {
+        @apply w-[85px] h-[85px] min-w-fit self-start
+        lg:w-[66px] lg:h-[66px] lg:mt-14;
+    }
+
+    .jobImage > img {
+        @apply w-[85px] h-[85px] rounded-full
+        lg:w-[66px] lg:h-[66px];
+    }
+
+    .jobInfoContainer {
+        @apply flex flex-row items-center gap-x-7 h-full
+        lg:flex-col lg:items-start lg:justify-start lg:gap-y-3.5;
+    }
+
+    .jobMainInfo {
+        @apply w-[960px] p-0 flex flex-col items-start gap-y-2 order-1
+        lg:order-2 lg:w-full lg:gap-y-1;
+    }
+
+    .jobMainInfo_title {
+        @apply w-4/5 p-0 font-bold text-xl tracking-[-0.625px] text-dark
+        lg:w-full lg:max-h-[48px] lg:font-normal lg:text-base
+        lg:truncate lg:text-ellipsis lg:whitespace-normal;
+    }
+
+    .jobMainInfo_company,
+    .jobMainInfo_address {
+        @apply font-normal text-base tracking-[0.23619px] text-secondary
+        lg:text-sm;
+    }
+
+    .jobMainInfo_address > span {
+        @apply ml-3;
+    }
+
+    .jobSecondaryInfo {
+        @apply flex flex-row items-center justify-between gap-x-7 h-full order-2
+        lg:order-1 lg:gap-0 lg:items-start lg:h-fit;
+    }
+
+    .jobRating {
+    }
+
+    .jobServiceInfo {
+        @apply h-full flex flex-col justify-between items-end
+        lg:h-fit;
+    }
+
+    .jobServiceInfo > .bookmark {
+        @apply lg:hidden;
+    }
+
+    .jobServiceInfo_createAt > p {
+        @apply p-0 m-0 text-end
+        lg:last:hidden;
+    }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
