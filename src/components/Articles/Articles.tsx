@@ -3,6 +3,7 @@ import {FC, useEffect} from "react";
 import {SearchBar} from "../SearchBar/SearchBar";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {articleActions} from "../../redux";
+import {NotFoundArticles} from "../NotFoundArticles/NotFoundArticles";
 
 const Articles: FC = () => {
     const {articles} = useAppSelector(state => state.articleReducer);
@@ -24,9 +25,11 @@ const Articles: FC = () => {
 
                 <div className={'articlesContainer'}>
                     {
-                        articles.map((art) => {
-                            return <div key={art.id}>{art.title}</div>;
-                        })
+                        articles.length
+                            ? articles.map((art) => {
+                                return <div key={art.id}>{art.title}</div>;
+                            })
+                            : <NotFoundArticles/>
                     }
                 </div>
             </div>
