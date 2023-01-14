@@ -4,6 +4,7 @@ import {SearchBar} from "../SearchBar/SearchBar";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {articleActions} from "../../redux";
 import {NotFoundArticles} from "../NotFoundArticles/NotFoundArticles";
+import {SingleArticle} from "../SingleArticle/SingleArticle";
 
 const Articles: FC = () => {
     const {articles} = useAppSelector(state => state.articleReducer);
@@ -23,12 +24,14 @@ const Articles: FC = () => {
             <div className={'wrap'}>
                 <SearchBar/>
 
+                <div className={'articlesCount'}>
+                    Result: {articles.length}
+                </div>
+
                 <div className={'articlesContainer'}>
                     {
                         articles.length
-                            ? articles.map((art) => {
-                                return <div key={art.id}>{art.title}</div>;
-                            })
+                            ? articles.map((article) => <SingleArticle key={article.id} article={article}/>)
                             : <NotFoundArticles/>
                     }
                 </div>

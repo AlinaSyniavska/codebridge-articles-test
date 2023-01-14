@@ -1,11 +1,15 @@
 import {FC} from "react";
-import {ArticleDetails} from "../../components";
+import {useAppSelector} from "../../hooks";
+
 
 const ArticleDetailsPage: FC = () => {
 
+    // const {articleDetails} = useAppSelector(state => state.articleReducer);
+
     return (
         <div>
-            <ArticleDetails/>
+            {/*<ArticleDetails article={article}/>*/}
+            ArticleDetails
         </div>
     );
 };

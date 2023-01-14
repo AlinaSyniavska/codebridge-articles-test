@@ -3,13 +3,18 @@
 @tailwind utilities;
 
 @layer components {
+    /*Articles.tsx*/
     .body {
         @apply flex justify-center items-center py-[50px] px-[75px];
     }
-    /*Articles.tsx*/
     .wrap {
         @apply flex flex-col gap-y-10 w-[1440px];
         /*border-solid border-2 border-amber-500;*/
+    }
+
+    .articlesCount {
+        @apply font-semibold text-base text-base-text
+        border-solid border-b-[1px] border-border-color;
     }
 
     /*SearchBar.tsx*/

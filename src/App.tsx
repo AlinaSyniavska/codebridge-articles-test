@@ -4,6 +4,7 @@ import {MainLayout} from "./layouts";
 import {ArticleDetailsPage, ArticlesPage, NotFoundPage} from "./pages";
 
 const App:FC = () => {
+
   return (
       <Routes>
           <Route path={'/'} element={<MainLayout/>}>

@@ -5,14 +5,14 @@ interface IProps {
     article: IArticle,
 }
 
-const ArticleDetails: FC<IProps> = ({article}) => {
-    // const {title} = article;
+const SingleArticle: FC<IProps> = ({article}) => {
+    const {imageUrl, publishedAt, title, summary} = article;
 
     return (
         <div>
-            ArticleDetails
+            {title}
         </div>
     );
 };
 
-export {ArticleDetails};
+export {SingleArticle};
