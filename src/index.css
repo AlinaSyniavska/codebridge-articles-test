@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer components {
+    .body {
+        @apply flex justify-center items-center;
+    }
+    /*Articles.tsx*/
+    .wrap {
+        @apply flex flex-col gap-y-10 w-[1440px]
+        border-solid border-2 border-amber-500;
+    }
+
     /*SearchBar.tsx*/
     .searchBarTitle {
         @apply font-semibold text-base text-base-text mb-2.5;

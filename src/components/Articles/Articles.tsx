@@ -4,7 +4,7 @@ import {SearchBar} from "../SearchBar/SearchBar";
 
 const Articles: FC = () => {
     return (
-        <div>
+        <div className={'body'}>
             <div className={'wrap'}>
                 <SearchBar/>
 
