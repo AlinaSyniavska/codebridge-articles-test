@@ -2,8 +2,11 @@ import React, {FC} from "react";
 
 import SearchIcon from '@mui/icons-material/Search';
 import Input from '@mui/material/Input';
+import {articleActions} from "../../redux";
+import {useAppDispatch} from "../../hooks";
 
 const SearchBar: FC = () => {
+    const dispatch = useAppDispatch();
 
     const debounce = (fn: Function, ms = 500) => {
         let timeoutId: ReturnType<typeof setTimeout>;
@@ -14,10 +17,18 @@ const SearchBar: FC = () => {
     };
 
     const changeFilterKeywords = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value);
+        const filterKeywords = event.target.value;
+        console.log(filterKeywords);
+
+        dispatch(articleActions.getAll({
+            params: {
+                title_contains: filterKeywords,
+                summary_contains: filterKeywords,
+            }
+        }));
     }
 
-    const debouncedChangeFilterKeywords = debounce(changeFilterKeywords, 1000);
+    const debouncedChangeFilterKeywords = debounce(changeFilterKeywords);
 
     return (
         <div>
