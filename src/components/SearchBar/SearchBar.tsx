@@ -1,4 +1,4 @@
-import React, {FC, useRef} from "react";
+import React, {FC} from "react";
 import {useSearchParams} from "react-router-dom";
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,7 +9,6 @@ import {useAppDispatch} from "../../hooks";
 
 const SearchBar: FC = () => {
     const dispatch = useAppDispatch();
-    const searchField = useRef();
     const [query, setQuery] = useSearchParams({
         title_contains: '',
         summary_contains: ''
@@ -47,7 +46,7 @@ const SearchBar: FC = () => {
             <div className={'searchBarContainer'}>
                 <SearchIcon/>
                 <Input
-                    ref={searchField}
+                    defaultValue={`${query.get('title_contains')}`}
                     placeholder={'Search...'}
                     onChange={debouncedChangeFilterKeywords}
                     fullWidth={true}
