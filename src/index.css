@@ -8,13 +8,22 @@
         @apply flex justify-center items-center py-[50px] px-[75px];
     }
     .wrap {
-        @apply flex flex-col gap-y-10 w-[1440px];
+        @apply flex flex-col gap-y-10 w-[1290px];
         /*border-solid border-2 border-amber-500;*/
     }
 
     .articlesCount {
         @apply font-semibold text-base text-base-text
         border-solid border-b-[1px] border-border-color;
+    }
+
+    .articlesContainer {
+        @apply flex justify-between gap-11 flex-wrap;
+    }
+
+    /*SingleArticle.tsx*/
+    .cardMedia {
+        @apply h-[217px] w-full;
     }
 
     /*SearchBar.tsx*/
