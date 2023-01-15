@@ -19,12 +19,12 @@ interface IProps {
 }
 
 const SingleArticle: FC<IProps> = ({article}) => {
-    const {imageUrl, publishedAt, title, summary} = article;
+    const {id, imageUrl, publishedAt, title, summary} = article;
     const dispatch = useAppDispatch();
 
     return (
         <ThemeProvider theme={muiHelper.createCustomTheme()}>
-            <Link to={'/articles/:id'} onClick={() => dispatch(articleActions.setSelectedArticle(article))}>
+            <Link to={`/articles/${id}`} onClick={() => dispatch(articleActions.setSelectedArticle(article))}>
                 <Card sx={{ width: 400, height: 530, display: 'flex', flexDirection: 'column', rowGap: '20px'}}>
                     <CardMedia
                         component="img"
