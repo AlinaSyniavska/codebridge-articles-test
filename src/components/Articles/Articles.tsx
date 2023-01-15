@@ -16,7 +16,6 @@ const Articles: FC = () => {
     });
     const {pathname} = useLocation();
 
-
     useEffect(() => {
         dispatch(articleActions.getAll({
             params: {
@@ -27,12 +26,11 @@ const Articles: FC = () => {
     }, [dispatch, query, pathname])
 
     useEffect(() => {
-            dispatch(articleActions.saveQueryParams({
-                title_contains: query.get('title_contains'),
-                summary_contains: query.get('summary_contains'),
-            }));
-        },
-        [dispatch, query]);
+        dispatch(articleActions.saveQueryParams({
+            title_contains: query.get('title_contains'),
+            summary_contains: query.get('summary_contains'),
+        }));
+    }, [dispatch, query]);
 
     return (
         <div className={'body'}>

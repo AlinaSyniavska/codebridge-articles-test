@@ -6,6 +6,7 @@ import Input from '@mui/material/Input';
 
 import {articleActions} from "../../redux";
 import {useAppDispatch} from "../../hooks";
+import {commonHelper} from "../../helpers";
 
 const SearchBar: FC = () => {
     const dispatch = useAppDispatch();
@@ -14,13 +15,13 @@ const SearchBar: FC = () => {
         summary_contains: ''
     });
 
-    const debounce = (fn: Function, ms = 500) => {
+/*    const debounce = (fn: Function, ms = 500) => {
         let timeoutId: ReturnType<typeof setTimeout>;
         return function (this: any, ...args: any[]) {
             clearTimeout(timeoutId);
             timeoutId = setTimeout(() => fn.apply(this, args), ms);
         };
-    };
+    };*/
 
     const changeFilterKeywords = (event: React.ChangeEvent<HTMLInputElement>) => {
         const filterKeywords = event.target.value;
@@ -38,7 +39,7 @@ const SearchBar: FC = () => {
         }));
     }
 
-    const debouncedChangeFilterKeywords = debounce(changeFilterKeywords);
+    const debouncedChangeFilterKeywords = commonHelper.debounce(changeFilterKeywords);
 
     return (
         <div>
