@@ -43,6 +43,10 @@ const articleSlice = createSlice({
     name: 'articleSlice',
     initialState,
     reducers: {
+        setSelectedArticle: (state, action) => {
+            const {article} = action.payload;
+            state.articleDetails = article;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -61,11 +65,12 @@ const articleSlice = createSlice({
     },
 });
 
-const {reducer: articleReducer, actions: {}} = articleSlice;
+const {reducer: articleReducer, actions: {setSelectedArticle}} = articleSlice;
 
 const articleActions = {
     getAll,
     getById,
+    setSelectedArticle,
 };
 
 export {
