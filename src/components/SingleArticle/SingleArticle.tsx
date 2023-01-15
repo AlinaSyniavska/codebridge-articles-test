@@ -26,7 +26,10 @@ const SingleArticle: FC<IProps> = ({article, highlight}) => {
 
     return (
         <ThemeProvider theme={muiHelper.createCustomTheme()}>
-            <Link to={`/articles/${id}`} onClick={() => dispatch(articleActions.setSelectedArticle(article))}>
+            <Link
+                to={`/articles/${id}`}
+                onClick={() => dispatch(articleActions.setSelectedArticle(article))}
+            >
                 <Card sx={{width: 400, height: 530, display: 'flex', flexDirection: 'column', rowGap: '20px'}}>
                     <CardMedia
                         component="img"
@@ -43,17 +46,30 @@ const SingleArticle: FC<IProps> = ({article, highlight}) => {
                         >
                             <DateRangeIcon sx={{color: '#868686'}}/> {`${commonHelper.getFormatDate(publishedAt)}`}
                         </Typography>
-                        <Typography component={'div'} variant="h5" color={'primary'}>
+                        <Typography
+                            component={'div'}
+                            variant="h5"
+                            color={'primary'}
+                        >
                             {highlight
                                 ? getHighlightedText(commonHelper.substringText(title, 70), highlight)
                                 : commonHelper.substringText(title, 70)}
                         </Typography>
-                        <Typography component={'div'} variant="body1" color={'primary'}>
+                        <Typography
+                            component={'div'}
+                            variant="body1"
+                            color={'primary'}
+                        >
                             {highlight
                                 ? getHighlightedText(commonHelper.substringText(summary, 100), highlight)
                                 : commonHelper.substringText(summary, 100)}
                         </Typography>
-                        <Typography component={'div'} variant="body1" color={'primary'} sx={{fontWeight: 'bold'}}>
+                        <Typography
+                            component={'div'}
+                            variant="body1"
+                            color={'primary'}
+                            sx={{fontWeight: 'bold'}}
+                        >
                             Read more <ArrowRightAltIcon/>
                         </Typography>
                     </CardContent>
@@ -63,11 +79,11 @@ const SingleArticle: FC<IProps> = ({article, highlight}) => {
     );
 };
 
-function getHighlightedText(text: string, higlight: string, color = 'yellow') {
-    const parts = text.split(new RegExp(`(${higlight})`, "gi"));
+function getHighlightedText(text: string, highlight: string, color = 'yellow') {
+    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, index) => (
         <React.Fragment key={index}>
-            {part.toLowerCase() === higlight.toLowerCase() ? (
+            {part.toLowerCase() === highlight.toLowerCase() ? (
                 <b style={{backgroundColor: `${color}`}}>{part}</b>
             ) : (
                 part
