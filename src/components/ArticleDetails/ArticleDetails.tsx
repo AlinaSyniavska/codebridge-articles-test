@@ -28,10 +28,10 @@ const ArticleDetails: FC = () => {
             <Box sx={{display: 'flex', justifyContent: 'center', margin: '150px 0 35px'}}>
                 <Card sx={{width: 1290, height: 1000, padding: '35px 75px 50px', display: 'flex', justifyContent: 'center', zIndex: 10}}>
                     <CardContent sx={{display: 'flex', flexDirection: 'column', rowGap: '50px'}}>
-                        <Typography variant="h5" color={'primary'} align={'center'}>
+                        <Typography component={'div'} variant="h5" color={'primary'} align={'center'}>
                             {articleDetails?.title}
                         </Typography>
-                        <Typography color={'primary'} align={'justify'} sx={{fontSize: '18px'}}>
+                        <Typography component={'div'} color={'primary'} align={'justify'} sx={{fontSize: '18px'}}>
                             {articleDetails?.summary}
                             <br/>
                             <br/>

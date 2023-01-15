@@ -41,13 +41,13 @@ const SingleArticle: FC<IProps> = ({article}) => {
                         >
                             <DateRangeIcon sx={{color: '#868686'}}/> {`${commonHelper.getFormatDate(publishedAt)}`}
                         </Typography>
-                        <Typography variant="h5" color={'primary'}>
+                        <Typography component={'div'} variant="h5" color={'primary'}>
                             {commonHelper.substringText(title, 70)}
                         </Typography>
-                        <Typography variant="body1" color={'primary'}>
+                        <Typography component={'div'} variant="body1" color={'primary'}>
                             {commonHelper.substringText(summary, 100)}
                         </Typography>
-                        <Typography variant="body1" color={'primary'} sx={{ fontWeight: 'bold' }}>
+                        <Typography component={'div'} variant="body1" color={'primary'} sx={{ fontWeight: 'bold' }}>
                             Read more <ArrowRightAltIcon/>
                         </Typography>
                     </CardContent>
