@@ -44,7 +44,10 @@ const Articles: FC = () => {
                 <div className={'articlesContainer'}>
                     {
                         articles.length
-                            ? articles.map((article) => <SingleArticle key={article.id} article={article}/>)
+                            ? articles.map((article) => <SingleArticle
+                                key={article.id}
+                                article={article}
+                                highlight={query.get('title_contains')}/>)
                             : <NotFoundArticles/>
                     }
                 </div>
