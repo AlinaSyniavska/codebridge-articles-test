@@ -9,6 +9,14 @@ const muiHelper = {
                     'sans-serif'
                 ].join(',')
             },
+            palette: {
+                primary: {
+                    light: '#868686',
+                    main: '#363636',
+                    contrastText: '#fff',
+                },
+            }
+
         });
     },
 

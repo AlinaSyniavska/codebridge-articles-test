@@ -36,17 +36,18 @@ const SingleArticle: FC<IProps> = ({article}) => {
                     <CardContent sx={{ padding: '0 20px 0', display: 'flex', flexDirection: 'column', rowGap: '20px'}}>
                         <Typography
                             component="div"
-                            sx={{ color: 'rgb(54, 54, 54, 0.6)', fontSize: 14 }}
+                            color={'primary.light'}
+                            sx={{ fontSize: 14 }}
                         >
-                            <DateRangeIcon/> {`${commonHelper.getFormatDate(publishedAt)}`}
+                            <DateRangeIcon sx={{color: '#868686'}}/> {`${commonHelper.getFormatDate(publishedAt)}`}
                         </Typography>
-                        <Typography variant="h5" color="#363636">
+                        <Typography variant="h5" color={'primary'}>
                             {commonHelper.substringText(title, 70)}
                         </Typography>
-                        <Typography variant="body1" color="#363636">
+                        <Typography variant="body1" color={'primary'}>
                             {commonHelper.substringText(summary, 100)}
                         </Typography>
-                        <Typography variant="body1" color="#363636" sx={{ fontWeight: 'bold' }}>
+                        <Typography variant="body1" color={'primary'} sx={{ fontWeight: 'bold' }}>
                             Read more <ArrowRightAltIcon/>
                         </Typography>
                     </CardContent>

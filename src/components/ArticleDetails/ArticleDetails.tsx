@@ -1,10 +1,11 @@
 import {FC} from "react";
 
 import Link from '@mui/material/Link';
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 import {useAppSelector} from "../../hooks";
-import {IArticle} from "../../interfaces";
+import {muiHelper} from "../../helpers";
+import { ThemeProvider } from "@mui/material";
 
 
 const ArticleDetails: FC = () => {
@@ -12,7 +13,7 @@ const ArticleDetails: FC = () => {
     // const {title, summary, imageUrl} = articleDetails as IArticle;
 
     return (
-        <div>
+        <ThemeProvider theme={muiHelper.createCustomTheme()}>
 
 
 
@@ -23,11 +24,17 @@ const ArticleDetails: FC = () => {
             {articleDetails?.summary}
 
 
-            <Link href="/" variant="body2">
-                <ArrowRightAltIcon/> Back to homepage
+            <Link
+                href="/"
+                variant="body1"
+                underline="none"
+                color={'primary'}
+                sx={{fontWeight: 'bold'}}
+            >
+                <KeyboardBackspaceIcon/> Back to homepage
             </Link>
 
-        </div>
+        </ThemeProvider>
     );
 };
 
