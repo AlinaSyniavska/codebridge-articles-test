@@ -12,9 +12,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-
 const ArticleDetails: FC = () => {
-    const {articleDetails} = useAppSelector(state => state.articleReducer);
+    const {articleDetails, title_contains, summary_contains} = useAppSelector(state => state.articleReducer);
 
     return (
         <ThemeProvider theme={muiHelper.createCustomTheme()}>
@@ -46,12 +45,11 @@ const ArticleDetails: FC = () => {
             </Box>
 
             <Link
-                href="/"
+                href={`/articles?title_contains=${title_contains}&summary_contains=${summary_contains}`}
                 variant="body1"
                 underline="none"
                 color={'primary'}
-                sx={{fontWeight: 'bold', margin: '0 0 45px 150px', display: 'inline-block'}}
-            >
+                sx={{fontWeight: 'bold', margin: '0 0 45px 150px', display: 'inline-block'}}>
                 <KeyboardBackspaceIcon/> Back to homepage
             </Link>
         </ThemeProvider>

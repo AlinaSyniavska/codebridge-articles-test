@@ -1,12 +1,19 @@
-import React, {FC} from "react";
+import React, {FC, useRef} from "react";
+import {useSearchParams} from "react-router-dom";
 
 import SearchIcon from '@mui/icons-material/Search';
 import Input from '@mui/material/Input';
+
 import {articleActions} from "../../redux";
 import {useAppDispatch} from "../../hooks";
 
 const SearchBar: FC = () => {
     const dispatch = useAppDispatch();
+    const searchField = useRef();
+    const [query, setQuery] = useSearchParams({
+        title_contains: '',
+        summary_contains: ''
+    });
 
     const debounce = (fn: Function, ms = 500) => {
         let timeoutId: ReturnType<typeof setTimeout>;
@@ -18,7 +25,11 @@ const SearchBar: FC = () => {
 
     const changeFilterKeywords = (event: React.ChangeEvent<HTMLInputElement>) => {
         const filterKeywords = event.target.value;
-        console.log(filterKeywords);
+
+        setQuery({
+            title_contains: `${filterKeywords}`,
+            summary_contains: `${filterKeywords}`
+        });
 
         dispatch(articleActions.getAll({
             params: {
@@ -36,6 +47,7 @@ const SearchBar: FC = () => {
             <div className={'searchBarContainer'}>
                 <SearchIcon/>
                 <Input
+                    ref={searchField}
                     placeholder={'Search...'}
                     onChange={debouncedChangeFilterKeywords}
                     fullWidth={true}

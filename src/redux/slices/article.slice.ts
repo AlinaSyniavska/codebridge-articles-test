@@ -7,12 +7,16 @@ interface IState {
     articles: IArticle[],
     articleDetails: IArticle | null,
     error: string,
+    title_contains: string,
+    summary_contains: string,
 }
 
 const initialState: IState = {
     articles: [],
     articleDetails: null,
     error: '',
+    title_contains: '',
+    summary_contains: '',
 };
 
 const getAll = createAsyncThunk<IArticle[], { params: IQueryParams }>(
@@ -46,6 +50,10 @@ const articleSlice = createSlice({
         setSelectedArticle: (state, action) => {
             state.articleDetails = action.payload;
         },
+        saveQueryParams: (state, action) => {
+            state.title_contains = action.payload.title_contains;
+            state.summary_contains = action.payload.summary_contains;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -64,11 +72,12 @@ const articleSlice = createSlice({
     },
 });
 
-const {reducer: articleReducer, actions: {setSelectedArticle}} = articleSlice;
+const {reducer: articleReducer, actions: {saveQueryParams, setSelectedArticle}} = articleSlice;
 
 const articleActions = {
     getAll,
     getById,
+    saveQueryParams,
     setSelectedArticle,
 };
 
