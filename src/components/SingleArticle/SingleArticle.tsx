@@ -8,9 +8,11 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 import {IArticle} from "../../interfaces";
-import {commonHelper} from "../../helpers";
+import {commonHelper, muiHelper} from "../../helpers";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {Link} from "react-router-dom";
+import {useAppDispatch} from "../../hooks";
+import {articleActions} from "../../redux";
 
 interface IProps {
     article: IArticle,
@@ -18,6 +20,7 @@ interface IProps {
 
 const SingleArticle: FC<IProps> = ({article}) => {
     const {imageUrl, publishedAt, title, summary} = article;
+    const dispatch = useAppDispatch();
 
     const theme = createTheme({
         typography: {
@@ -30,7 +33,7 @@ const SingleArticle: FC<IProps> = ({article}) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Link to={'/articles/:id'}>
+            <Link to={'/articles/:id'} onClick={() => dispatch(articleActions.setSelectedArticle(article))}>
                 <Card sx={{ width: 400, height: 530, display: 'flex', flexDirection: 'column', rowGap: '20px'}}>
                     <CardMedia
                         component="img"
@@ -58,9 +61,6 @@ const SingleArticle: FC<IProps> = ({article}) => {
                     </CardContent>
                 </Card>
             </Link>
-
-
-
         </ThemeProvider>
     );
 };

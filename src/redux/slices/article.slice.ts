@@ -44,8 +44,7 @@ const articleSlice = createSlice({
     initialState,
     reducers: {
         setSelectedArticle: (state, action) => {
-            const {article} = action.payload;
-            state.articleDetails = article;
+            state.articleDetails = action.payload;
         },
     },
     extraReducers: (builder) => {
