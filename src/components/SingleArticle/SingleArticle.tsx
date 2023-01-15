@@ -9,7 +9,7 @@ import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 import {IArticle} from "../../interfaces";
 import {commonHelper, muiHelper} from "../../helpers";
-import {createTheme, ThemeProvider} from "@mui/material";
+import {ThemeProvider} from "@mui/material";
 import {Link} from "react-router-dom";
 import {useAppDispatch} from "../../hooks";
 import {articleActions} from "../../redux";
@@ -22,17 +22,8 @@ const SingleArticle: FC<IProps> = ({article}) => {
     const {imageUrl, publishedAt, title, summary} = article;
     const dispatch = useAppDispatch();
 
-    const theme = createTheme({
-        typography: {
-            fontFamily: [
-                'Montserrat',
-                'sans-serif'
-            ].join(',')
-        },
-    });
-
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={muiHelper.createCustomTheme()}>
             <Link to={'/articles/:id'} onClick={() => dispatch(articleActions.setSelectedArticle(article))}>
                 <Card sx={{ width: 400, height: 530, display: 'flex', flexDirection: 'column', rowGap: '20px'}}>
                     <CardMedia

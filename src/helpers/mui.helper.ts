@@ -1,7 +1,7 @@
 import {createTheme} from "@mui/material";
 
 const muiHelper = {
-/*    createCustomTheme: () => {
+    createCustomTheme: () => {
         return createTheme({
             typography: {
                 fontFamily: [
@@ -10,7 +10,7 @@ const muiHelper = {
                 ].join(',')
             },
         });
-    },*/
+    },
 
 }
 
