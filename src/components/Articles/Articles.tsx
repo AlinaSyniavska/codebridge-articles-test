@@ -18,6 +18,10 @@ const Articles: FC = () => {
     const {pathname} = useLocation();
 
     useEffect(() => {
+        commonHelper.moveToPageTop();
+    }, [])
+
+    useEffect(() => {
         (async () => {
             await dispatch(articleActions.getAllByTitle({
                 params: {
