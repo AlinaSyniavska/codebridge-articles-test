@@ -23,9 +23,9 @@ const commonHelper = {
         const arrKeywords = keywords.trim().split(' ');
 
         for (const item of arr) {
-            if(arrKeywords.some((word:string) => item.title.includes(word))) {
+            if (arrKeywords.some((word: string) => item.title.includes(word))) {
                 first.push(item);
-            } else  {
+            } else {
                 second.push(item);
             }
         }
@@ -33,7 +33,18 @@ const commonHelper = {
         arr = [...first, ...second];
         return arr;
     },
-    moveToPageTop: ():void => {
+    makeUnionArticles: (first: IArticle[], second: IArticle[]): IArticle[] => {
+        const result = [...first];
+
+        for (const item of second) {
+            if (first.every(elem => elem.id !== item.id)) {
+                result.push(item);
+            }
+        }
+
+        return result;
+    },
+    moveToPageTop: (): void => {
         window.scrollTo({
             top: 0,
             left: 0,

@@ -9,7 +9,7 @@ import {useLocation, useSearchParams} from "react-router-dom";
 import {commonHelper} from "../../helpers";
 
 const Articles: FC = () => {
-    const {articles, title_contains, summary_contains} = useAppSelector(state => state.articleReducer);
+    const {articles, selectedArticlesByTitle, selectedArticlesBySummary, title_contains, summary_contains} = useAppSelector(state => state.articleReducer);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams({
         title_contains: `${title_contains}`,
@@ -18,19 +18,25 @@ const Articles: FC = () => {
     const {pathname} = useLocation();
 
     useEffect(() => {
-        dispatch(articleActions.getAll({
-            params: {
-                title_contains: `${query.get('title_contains')}`,
-                summary_contains: `${query.get('summary_contains')}`,
-            }
-        }));
+        (async () => {
+            await dispatch(articleActions.getAllByTitle({
+                params: {
+                    title_contains: `${query.get('title_contains')}`,
+                }
+            }));
+            await dispatch(articleActions.getAllBySummary({
+                params: {
+                    summary_contains: `${query.get('summary_contains')}`,
+                }
+            }));
+        })();
+
     }, [dispatch, query, pathname])
 
     useEffect(() => {
-        if(query.get('title_contains')) {
-            commonHelper.sortPriorityItems(articles, query.get('title_contains')!);
-        }
-    }, [articles])
+        const result = commonHelper.makeUnionArticles(selectedArticlesByTitle, selectedArticlesBySummary);
+        dispatch(articleActions.fillArticles(result));
+    }, [selectedArticlesByTitle, selectedArticlesBySummary])
 
     useEffect(() => {
         dispatch(articleActions.saveQueryParams({

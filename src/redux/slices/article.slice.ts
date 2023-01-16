@@ -5,6 +5,8 @@ import {articleService} from "../../services";
 
 interface IState {
     articles: IArticle[],
+    selectedArticlesByTitle: IArticle[],
+    selectedArticlesBySummary: IArticle[],
     articleDetails: IArticle | null,
     error: string,
     title_contains: string,
@@ -13,14 +15,28 @@ interface IState {
 
 const initialState: IState = {
     articles: [],
+    selectedArticlesByTitle: [],
+    selectedArticlesBySummary: [],
     articleDetails: null,
     error: '',
     title_contains: '',
     summary_contains: '',
 };
 
-const getAll = createAsyncThunk<IArticle[], { params: IQueryParams }>(
-    'articleSlice/getAll',
+const getAllByTitle = createAsyncThunk<IArticle[], { params: IQueryParams }>(
+    'articleSlice/getAllByTitle',
+    async ({params}, {rejectWithValue}) => {
+        try {
+            const {data} = await articleService.getAll(params);
+            return data;
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+);
+
+const getAllBySummary = createAsyncThunk<IArticle[], { params: IQueryParams }>(
+    'articleSlice/getAllBySummary',
     async ({params}, {rejectWithValue}) => {
         try {
             const {data} = await articleService.getAll(params);
@@ -47,6 +63,9 @@ const articleSlice = createSlice({
     name: 'articleSlice',
     initialState,
     reducers: {
+        fillArticles: (state, action) => {
+            state.articles = action.payload;
+        },
         setSelectedArticle: (state, action) => {
             state.articleDetails = action.payload;
         },
@@ -57,10 +76,16 @@ const articleSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getAll.fulfilled, (state, action) => {
-                state.articles = action.payload;
+            .addCase(getAllByTitle.fulfilled, (state, action) => {
+                state.selectedArticlesByTitle = action.payload;
             })
-            .addCase(getAll.rejected, (state, action) => {
+            .addCase(getAllByTitle.rejected, (state, action) => {
+                state.error = action.payload as any;
+            })
+            .addCase(getAllBySummary.fulfilled, (state, action) => {
+                state.selectedArticlesBySummary = action.payload;
+            })
+            .addCase(getAllBySummary.rejected, (state, action) => {
                 state.error = action.payload as any;
             })
             .addCase(getById.fulfilled, (state, action) => {
@@ -72,10 +97,12 @@ const articleSlice = createSlice({
     },
 });
 
-const {reducer: articleReducer, actions: {saveQueryParams, setSelectedArticle}} = articleSlice;
+const {reducer: articleReducer, actions: {fillArticles, saveQueryParams, setSelectedArticle}} = articleSlice;
 
 const articleActions = {
-    getAll,
+    fillArticles,
+    getAllByTitle,
+    getAllBySummary,
     getById,
     saveQueryParams,
     setSelectedArticle,
