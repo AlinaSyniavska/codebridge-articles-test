@@ -28,3 +28,7 @@ CSS preprocessors should be used.
 Please use Material UI.
 Showing an example of a custom hook will be a plus.
 Showing an example of state management will be a big plus.
+
+for deploy
+/Users/alina/IdeaProjects/codebridge-articles-test/build
+Website URL:       https://space-articles.netlify.app
