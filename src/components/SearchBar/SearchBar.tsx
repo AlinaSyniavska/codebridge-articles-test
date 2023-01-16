@@ -4,16 +4,9 @@ import {useSearchParams} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import Input from '@mui/material/Input';
 
-import {articleActions} from "../../redux";
-import {useAppDispatch, useAppSelector} from "../../hooks";
 import {commonHelper} from "../../helpers";
 
 const SearchBar: FC = () => {
-    const {
-        selectedArticlesByTitle,
-        selectedArticlesBySummary
-    } = useAppSelector(state => state.articleReducer);
-    const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams({
         title_contains: '',
         summary_contains: ''
@@ -26,23 +19,6 @@ const SearchBar: FC = () => {
             title_contains: `${filterKeywords}`,
             summary_contains: `${filterKeywords}`
         });
-
-        (async () => {
-            await dispatch(articleActions.getAllByTitle({
-                params: {
-                    title_contains: filterKeywords,
-                }
-            }));
-
-            await dispatch(articleActions.getAllBySummary({
-                params: {
-                    summary_contains: filterKeywords,
-                }
-            }));
-        })();
-
-        const result = commonHelper.makeUnionArticles(selectedArticlesByTitle, selectedArticlesBySummary);
-        dispatch(articleActions.fillArticles(result));
     }
 
     const debouncedChangeFilterKeywords = commonHelper.debounce(changeFilterKeywords);
