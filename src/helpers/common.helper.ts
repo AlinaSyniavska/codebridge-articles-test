@@ -33,6 +33,13 @@ const commonHelper = {
         arr = [...first, ...second];
         return arr;
     },
+    moveToPageTop: ():void => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
 
 }
 

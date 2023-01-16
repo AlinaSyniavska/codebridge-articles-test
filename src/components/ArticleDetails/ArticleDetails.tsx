@@ -1,11 +1,11 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 
 import Link from '@mui/material/Link';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import Box from '@mui/material/Box';
 
 import {useAppSelector} from "../../hooks";
-import {muiHelper} from "../../helpers";
+import {commonHelper, muiHelper} from "../../helpers";
 import {ThemeProvider} from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
@@ -14,6 +14,10 @@ import Typography from "@mui/material/Typography";
 
 const ArticleDetails: FC = () => {
     const {articleDetails, title_contains, summary_contains} = useAppSelector(state => state.articleReducer);
+
+    useEffect(() => {
+        commonHelper.moveToPageTop();
+    }, [])
 
     return (
         <ThemeProvider theme={muiHelper.createCustomTheme()}>
