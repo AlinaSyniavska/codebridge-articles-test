@@ -1,3 +1,5 @@
+import {IArticle} from "../interfaces";
+
 const commonHelper = {
     debounce: (fn: Function, ms = 500) => {
         let timeoutId: ReturnType<typeof setTimeout>;
@@ -12,8 +14,26 @@ const commonHelper = {
     },
     substringText(string: string, max: number): string {
         return string.length > max ?
-           `${string.substring(0, max)}...` : string
+            `${string.substring(0, max)}...` : string
     },
+    sortPriorityItems: (arr: IArticle[], keywords: string): IArticle[] => {
+        const first = [];
+        const second = [];
+
+        const arrKeywords = keywords.trim().split(' ');
+
+        for (const item of arr) {
+            if(arrKeywords.some((word:string) => item.title.includes(word))) {
+                first.push(item);
+            } else  {
+                second.push(item);
+            }
+        }
+
+        arr = [...first, ...second];
+        return arr;
+    },
+
 }
 
 export {

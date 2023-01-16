@@ -6,6 +6,7 @@ import {articleActions} from "../../redux";
 import {NotFoundArticles} from "../NotFoundArticles/NotFoundArticles";
 import {SingleArticle} from "../SingleArticle/SingleArticle";
 import {useLocation, useSearchParams} from "react-router-dom";
+import {commonHelper} from "../../helpers";
 
 const Articles: FC = () => {
     const {articles, title_contains, summary_contains} = useAppSelector(state => state.articleReducer);
@@ -24,6 +25,12 @@ const Articles: FC = () => {
             }
         }));
     }, [dispatch, query, pathname])
+
+    useEffect(() => {
+        if(query.get('title_contains')) {
+            commonHelper.sortPriorityItems(articles, query.get('title_contains')!);
+        }
+    }, [articles])
 
     useEffect(() => {
         dispatch(articleActions.saveQueryParams({
