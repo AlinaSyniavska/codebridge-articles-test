@@ -1,6 +1,5 @@
 import {FC, useEffect} from "react";
 
-import Link from '@mui/material/Link';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import Box from '@mui/material/Box';
 
@@ -11,6 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import {Link} from "react-router-dom";
 
 const ArticleDetails: FC = () => {
     const {articleDetails, title_contains, summary_contains} = useAppSelector(state => state.articleReducer);
@@ -48,12 +48,8 @@ const ArticleDetails: FC = () => {
                 </Card>
             </Box>
 
-            <Link
-                href={`/articles?title_contains=${title_contains}&summary_contains=${summary_contains}`}
-                variant="body1"
-                underline="none"
-                color={'primary'}
-                sx={{fontWeight: 'bold', margin: '0 0 45px 150px', display: 'inline-block'}}>
+            <Link to={`/articles?title_contains=${title_contains}&summary_contains=${summary_contains}`}
+            className={'link'}>
                 <KeyboardBackspaceIcon/> Back to homepage
             </Link>
         </ThemeProvider>

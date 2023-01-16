@@ -36,6 +36,10 @@
         border-solid border-[1px] border-border-color rounded-[5px];
     }
 
+    /*ArticleDetails.tsx*/
+    .link {
+        @apply text-base text-base-text font-bold mt-0 mr-0 mb-[45px] ml-[150px] inline-block;
+    }
 }
 
 
