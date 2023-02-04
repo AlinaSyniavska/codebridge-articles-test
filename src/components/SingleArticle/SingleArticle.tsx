@@ -79,7 +79,7 @@ const SingleArticle: FC<IProps> = ({article, highlight}) => {
     );
 };
 
-function getHighlightedText(text: string, highlight: string, color = 'teal') {
+function getHighlightedText(text: string, highlight: string, color = 'yellow') {
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, index) => (
         <React.Fragment key={index}>
