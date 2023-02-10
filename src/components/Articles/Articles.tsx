@@ -57,7 +57,7 @@ const Articles: FC = () => {
     return (
         <div className={'body'}>
             <div className={'wrap'}>
-                {/*<SearchBar/>*/}
+                <SearchBar/>
 
                 <div className={'articlesCount'}>
                     Result: {articles.length}
