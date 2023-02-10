@@ -9,7 +9,13 @@ import {useLocation, useSearchParams} from "react-router-dom";
 import {commonHelper} from "../../helpers";
 
 const Articles: FC = () => {
-    const {articles, selectedArticlesByTitle, selectedArticlesBySummary, title_contains, summary_contains} = useAppSelector(state => state.articleReducer);
+    const {
+        articles,
+        selectedArticlesByTitle,
+        selectedArticlesBySummary,
+        title_contains,
+        summary_contains
+    } = useAppSelector(state => state.articleReducer);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams({
         title_contains: `${title_contains}`,
@@ -34,7 +40,6 @@ const Articles: FC = () => {
                 }
             }));
         })();
-
     }, [dispatch, query, pathname])
 
     useEffect(() => {
@@ -52,7 +57,7 @@ const Articles: FC = () => {
     return (
         <div className={'body'}>
             <div className={'wrap'}>
-                <SearchBar/>
+                {/*<SearchBar/>*/}
 
                 <div className={'articlesCount'}>
                     Result: {articles.length}

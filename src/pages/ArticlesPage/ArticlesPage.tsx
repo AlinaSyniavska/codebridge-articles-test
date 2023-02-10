@@ -1,11 +1,13 @@
+import React from "react";
 import {FC} from "react";
-import {Articles} from "../../components";
+import {Articles, SearchBar} from "../../components";
 
 const ArticlesPage: FC = () => {
     return (
-        <div>
+        <React.Fragment>
+            <SearchBar/>
             <Articles/>
-        </div>
+        </React.Fragment>
     );
 };
 
